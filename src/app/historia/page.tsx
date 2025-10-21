@@ -47,37 +47,37 @@ const MOMENTOS: Moment[] = [
    id: "m6",
    date: "25/10/2024",
    title: "Nuestro primer día como novios.",
-   text: "TODO: AÑADIR TEXTO",
+   text: "Estaba un poquitin nervioso jajaja y tarde un poquitititito pero me alegro de que hayas aceptado ver los simpsons conmigo y también ser mi novia. Te amo amorcito",
   },
   {
    id: "m7",
    date: "16/11/2024",
    title: "Nuestro primer te amo y nuestra primera pijamadita",
-   text: "TODO: AÑADIR TEXTO",
+   text: "Tenía un poco de miedo de decirte que te amaba y también de que no digas lo mismo. También tenía miedito a que no me dejes quedarme a dormir en tu casita. Fue tremendo día, te amo amorcito ",
   },
   {
    id: "m8",
    date: "25/11/2024",
    title: "Nuestro primer aniversario",
-   text: "TODO: AÑADIR TEXTO",
+   text: "Me encató pasarlo contigo y también me enncantó el pastel que hiciste, estaba deliciosisisismo y me lo comi yo solito jajaja",
   },
   {
    id: "m9",
    date: "22/11/2024",
    title: "Nuestra primera foto juntitos y nuestra casita de gengibre",
-   text: "TODO: AÑADIR TEXTO",
+   text: "Me gustó mucho la idea de hacer una casita de gengibre aunque me senti un poco inutil porque no hice mucho, aún asi estaba tan feliz por nuestra fotito y por pasar el tiempo contigo. Te amo mi vdai",
   },
   {
    id: "m10",
    date: "14/02/2025",
    title: "Nuestro primer San Valentín juntos",
-   text: "TODO: AÑADIR TEXTO",
+   text: "Aunque empezó mal, me encantó hacer la lasagnita, estaba deli, sabes que toda la comida que haces es mi favorita mi vida",
   },
   {
    id: "m11",
    date: "14/02/2025",
    title: "BONUS: Mi cumpleaños jajaja",
-   text: "TODO: AÑADIR TEXTO",
+   text: "Me encantaron los regalos que me diste y también me hicieron sentir super amado y bienvenido y no sé, me hizo pensar en cuando vivamos juntos. Gracias por los mejores regalo del mundo amoricto",
   },
 
 ];
