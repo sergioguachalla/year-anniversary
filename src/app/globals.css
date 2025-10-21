@@ -5,3 +5,36 @@
 @source '../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
 @custom-variant dark (&:is(.dark *));
 
+/* === Tema (Midnight Sky) === */
+:root {
+  --bg: #F5F8FF;
+  --fg: #0B1220;
+  --primary: #1E40AF;    /* azul profundo */
+  --secondary: #C7D2FE;  /* azul lavanda claro */
+  --blush: #E0E7FF;      /* halo suave azulado */
+}
+
+/* Dark mode a juego */
+.dark {
+  --bg: #0B1220;
+  --fg: #E5E7EB;
+  --primary: #60A5FA;    /* azul más claro en dark */
+  --secondary: #1F2A44;
+  --blush: #111B33;
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+/* Fondo con halo suave para la hero */
+.gradient-hero {
+  background:
+    radial-gradient(1200px 600px at 20% -10%, var(--blush), transparent 60%),
+    radial-gradient(1000px 500px at 100% 10%, rgba(37, 99, 235, 0.12), transparent 60%);
+}
+
+/* Familias (se completan con next/font) */
+.body-font { font-family: var(--font-sans), system-ui, sans-serif; }

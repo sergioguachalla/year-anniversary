@@ -1,24 +1,47 @@
-// app/page.tsx
+import TabsSection, { TabItem } from "./components/TabsSection";
 
-'use client'
-import {Button} from '@heroui/button'; 
-import {Card, CardHeader, CardBody, Image} from "@heroui/react";
+const ITEMS: TabItem[] = [
+  {
+    key: "mensaje",
+    title: "Mensaje",
+    content: (
+      <div className="space-y-3">
+        {/* TODO: reemplazar por el texto real */}
+        <h2 className="text-2xl md:text-3xl font-bold">[TÍTULO PENDIENTE]</h2>
+        <p className="opacity-80">
+          [Placeholder] Aquí irá el mensaje principal del inicio. Mantén 1–2
+          líneas máximo. Ejemplo: “Texto pendiente…”.
+        </p>
+      </div>
+    ),
+  },
+  {
+    key: "acciones",
+    title: "Acciones",
+    content: (
+      <div className="space-y-2">
+        {/* TODO: define las acciones exactas (ej: enlaces a /historia, /cartas, etc.) */}
+        <p className="opacity-80">
+          [Placeholder] Aquí irán las acciones/CTAs. Indícame etiquetas y rutas
+          exactas cuando las tengas.
+        </p>
+      </div>
+    ),
+  },
+];
+
 export default function Page() {
- return (
-    <Card className="py-4">
-      <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-        <p className="text-tiny uppercase font-bold">Daily Mix</p>
-        <small className="text-default-500">12 Tracks</small>
-        <h4 className="font-bold text-large">Frontend Radio</h4>
-      </CardHeader>
-      <CardBody className="overflow-visible py-2">
-        <Image
-          alt="Card background"
-          className="object-cover rounded-xl"
-          src="https://heroui.com/images/hero-card-complete.jpeg"
-          width={270}
-        />
-      </CardBody>
-    </Card>
+  return (
+    <main className="p-6 md:p-10">
+      <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">
+        Inicio
+      </h1>
+
+      <TabsSection
+        ariaLabel="Secciones de Inicio"
+        items={ITEMS}
+        // variant="underlined" // puedes cambiar a "solid" o "bordered" cuando quieras
+      />
+    </main>
   );
 }

@@ -1,17 +1,19 @@
-// app/layout.tsx
-
-// globals.css includes @tailwind directives
-// adjust the path if necessary
+"use client"
+import type { Metadata } from "next";
+import { HeroUIProvider } from "@heroui/react";
 import "@/app/globals.css";
-import {Providers} from "./providers";
+import { plusJakarta } from "./fonts";
 
-export default function RootLayout({children}: { children: React.ReactNode }) {
+ const metadata: Metadata = {
+  title: "Nuestro aniversario — 1 año",
+  description: "Gracias por cambiar mi vida.",
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className='dark'>
-      <body>
-        <Providers>
-          {children}
-        </Providers>
+    <html lang="es" suppressHydrationWarning>
+      <body className={`${plusJakarta.variable} body-font min-h-screen bg-[var(--bg)] text-[var(--fg)]`}>
+        <HeroUIProvider>{children}</HeroUIProvider>
       </body>
     </html>
   );
