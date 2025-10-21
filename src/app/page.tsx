@@ -9,7 +9,7 @@ const ACTIONS: ActionItem[] = [
   { href: "/galeria",  label: "Una galería de nuestras memorias" },
   { href: "/cartas",   label: "Unas cartitas para ti" },
   { href: "/razones",  label: "Razones por las que te amo" },
-  { href: "/planes",   label: "Un bucket list" }, // <-- antes decía /bucket
+  { href: "/bucket",   label: "Un bucket list" }, 
 ];
 
 const ITEMS: TabItem[] = [
@@ -26,11 +26,10 @@ const ITEMS: TabItem[] = [
         }
       >
         <HeroPicture
-    src="/images/page_1.jpg"   // TODO: reemplazar por tu archivo real
-    alt="Nosotros sonriendo" // TODO: escribe un alt real
+    src="/images/page_1.jpg"   
+    alt="Nosotros sonriendo" 
     className="mb-4"
   />
-        {/* Pon aquí tu texto EXACTO (sin cambiar nada) */}
         <p className="opacity-80">
           Feliz aniversario mi amor. Gracias por todo estos maravillosísimos 365 días.
           Quiero que sepas que has cambiado mi vida y que te amo más de lo que puedo expresar.
@@ -59,7 +58,6 @@ export default function Page() {
       <TabsSection
         ariaLabel="Secciones de Inicio"
         items={ITEMS}
-        // variant="underlined" // puedes cambiar a "solid" o "bordered" cuando quieras
       />
     </main>
   );

@@ -8,8 +8,8 @@ export type ActionItem = {
 };
 
 type ActionLinksProps = {
-  ariaLabel: string;       // ej: "Acciones de inicio"
-  items: ActionItem[];     // en el orden exacto que quieras
+  ariaLabel: string;      
+  items: ActionItem[];     
   className?: string;
 };
 
