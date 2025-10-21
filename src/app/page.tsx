@@ -1,7 +1,7 @@
 import TabsSection, { TabItem } from "./components/TabsSection";
 import LoveNote from "./components/LoveNote";
 import HeroPicture from "./components/HeroPicture";
-
+import TermsGate from "./components/TermsGate";
 import ActionLinks, {ActionItem} from "./components/ActionLinks";
 
 const ACTIONS: ActionItem[] = [
@@ -41,9 +41,11 @@ const ITEMS: TabItem[] = [
   },
   {
     key: "acciones",
-    title: "Acciones",
+    title: "Dale click acá",
     content: (
-      <ActionLinks ariaLabel="Acciones de inicio" items={ACTIONS} />
+      <TermsGate storageKey="acciones-aceptadas">
+        <ActionLinks ariaLabel="Acciones de inicio" items={ACTIONS} />
+      </TermsGate>
     ),
   },
 ];
