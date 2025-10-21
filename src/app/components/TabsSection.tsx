@@ -3,17 +3,17 @@ import { Tabs, Tab } from "@heroui/react";
 import { ReactNode } from "react";
 
 export type TabItem = {
-  key: string;      // id único de la pestaña
-  title: string;    // etiqueta visible
-  content: ReactNode; // contenido: texto o componente
+  key: string;      
+  title: string;   
+  content: ReactNode; 
 };
 
 export type TabsSectionProps = {
-  ariaLabel: string;      // ej: "Secciones de Inicio"
-  items: TabItem[];       // pestañas en orden exacto
-  fullWidth?: boolean;    // opcional
-  className?: string;     // opcional
-  variant?: "solid" | "bordered" | "underlined"; // opcional
+  ariaLabel: string;      
+  items: TabItem[];       
+  fullWidth?: boolean;    
+  className?: string;     
+  variant?: "solid" | "bordered" | "underlined"; 
 };
 
 export default function TabsSection({
