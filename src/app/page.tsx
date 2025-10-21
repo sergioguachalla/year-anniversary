@@ -1,31 +1,50 @@
 import TabsSection, { TabItem } from "./components/TabsSection";
+import LoveNote from "./components/LoveNote";
+import HeroPicture from "./components/HeroPicture";
+
+import ActionLinks, {ActionItem} from "./components/ActionLinks";
+
+const ACTIONS: ActionItem[] = [
+  { href: "/historia", label: "Un timeline de nosotros" },
+  { href: "/galeria",  label: "Una galería de nuestras memorias" },
+  { href: "/cartas",   label: "Unas cartitas para ti" },
+  { href: "/razones",  label: "Razones por las que te amo" },
+  { href: "/planes",   label: "Un bucket list" }, // <-- antes decía /bucket
+];
 
 const ITEMS: TabItem[] = [
   {
     key: "mensaje",
     title: "Mensaje",
     content: (
-      <div className="space-y-3">
-        {/* TODO: reemplazar por el texto real */}
-        <h2 className="text-2xl md:text-3xl font-bold">[TÍTULO PENDIENTE]</h2>
+      <LoveNote
+        chipText="1 año juntos"
+        title={
+          <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">
+            UN AÑITO SUIIIII
+          </h2>
+        }
+      >
+        <HeroPicture
+    src="/images/page_1.jpg"   // TODO: reemplazar por tu archivo real
+    alt="Nosotros sonriendo" // TODO: escribe un alt real
+    className="mb-4"
+  />
+        {/* Pon aquí tu texto EXACTO (sin cambiar nada) */}
         <p className="opacity-80">
-          [Placeholder] Aquí irá el mensaje principal del inicio. Mantén 1–2
-          líneas máximo. Ejemplo: “Texto pendiente…”.
+          Feliz aniversario mi amor. Gracias por todo estos maravillosísimos 365 días.
+          Quiero que sepas que has cambiado mi vida y que te amo más de lo que puedo expresar.
+          Hice esta página para recordarte todo lo que he vivido con ti y para recordarte que
+          eres mi mejor amiga, el amor de mi vida y mi todo, te amo demasiadisisisimo ♥
         </p>
-      </div>
+      </LoveNote>
     ),
   },
   {
     key: "acciones",
     title: "Acciones",
     content: (
-      <div className="space-y-2">
-        {/* TODO: define las acciones exactas (ej: enlaces a /historia, /cartas, etc.) */}
-        <p className="opacity-80">
-          [Placeholder] Aquí irán las acciones/CTAs. Indícame etiquetas y rutas
-          exactas cuando las tengas.
-        </p>
-      </div>
+      <ActionLinks ariaLabel="Acciones de inicio" items={ACTIONS} />
     ),
   },
 ];
