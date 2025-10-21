@@ -1,10 +1,36 @@
+// app/razones/page.tsx
 import TabsSection, { TabItem } from "../components/TabsSection";
+import ReasonsList from "../components/ReasonsList";
 
-const ITEMS: TabItem[] = [
-  // TODO: insertar pestañas exactas de Razones (si las segmentas por categorías)
-  // { key: "tiernuras", title: "Ternuras", content: <ListaRazones items={...} /> },
+/**
+ * Pega tus frases exactas entre comillas.
+ * Puedes mantener solo "TODAS" o crear categorías y tabs extra.
+ */
+
+const TODAS: string[] = [
+  "Verte después de las eternas 48 hrs que pasan entre los días que nos vemos",
+  "Verte sonreir",
+  "Escuchar tu risita",
+  "Verte dormir",
+  "Ver peliculas juntos",
+  "Comer juntos",
+  "Cocinar juntos aunque solo me ayudes pasandome las cosas jijiji",
+  "Tus besitos",
+  "Tus abrazos",
+  "Tus piecitos",
+  "Tu carita preciosa",
+  "Tus ojitos preciosos",
+  "Tus caricias",
+  "Tus besotes",
+  "Tu traserito :D",
+  "La forma en la que me ves",
+  "ABSOLUTAMENTE TODO DE TI MI AMOR",
 ];
 
+
+const ITEMS: TabItem[] = [
+  { key: "todas", title: "Todas", content: <ReasonsList items={TODAS} /> },
+];
 export default function Page() {
   return (
     <main className="p-6 md:p-10">
