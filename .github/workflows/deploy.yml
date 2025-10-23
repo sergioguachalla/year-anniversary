@@ -38,20 +38,21 @@ jobs:
         run: |
           npm run build
           touch out/.nojekyll
-      - name: Debug
+      - name: Debug exported files
         run: |
           echo "== Lista de archivos en out/images =="
           ls -lah out/images || true
-
+              
           echo "== Buscando rutas ABSOLUTAS a /images en HTML/JS =="
-          if grep -R --line-number -E 'src="/images/|url\\(/images/' out; then
+          if grep -R --line-number '/images/' out; then
             echo "::warning::Se encontraron rutas absolutas a /images (sin basePath)."
           else
             echo "OK: no hay rutas absolutas '/images/'."
           fi
-
+              
           echo "== Muestra de HTML principal (index.html) =="
-          sed -n '1,150p' out/index.html | sed -n '1,80p' || true 
+          sed -n '1,120p' out/index.html || true
+              
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
