@@ -3,7 +3,7 @@ import LoveNote from "./components/LoveNote";
 import HeroPicture from "./components/HeroPicture";
 import TermsGate from "./components/TermsGate";
 import ActionLinks, {ActionItem} from "./components/ActionLinks";
-
+import { withBasePath } from "./helpers/basePath";
 const ACTIONS: ActionItem[] = [
   { href: "/historia", label: "Un timeline de nosotros" },
   { href: "/galeria",  label: "Una galería de nuestras memorias" },
