@@ -1,6 +1,7 @@
 "use client";
 import TabsSection, { TabItem } from "../components/TabsSection";
 import Gallery, { Photo } from "../components/Gallery";
+import { withBasePath } from "../helpers/basePath";
 
 
 const PHOTOS: Photo[] = [
@@ -16,7 +17,7 @@ const PHOTOS: Photo[] = [
   { src:"/images/galeria/10.jpg", alt: "Nuestra décima foto juntitos", width: 1200, height: 1600, caption: "Tu comiendo tu desayunito americano y la vez que me diste las galletas en navidad"  },
   { src:"/images/galeria/11.jpg", alt: "Nuestra onceava foto juntitos", width: 1200, height: 1600, caption: "Mi bebé preciosa" },
   { src:"/images/galeria/12.jpg", alt: "Nuestra doceava foto juntitos", width: 1200, height: 1600, caption: "Las pizzitas que hicimos, tu mesa nunca olvidará ese día jajaja" },
-  
+
 
 
   // { src: "/images/bubu-dudu-cafe.jpg",   alt: "Bubu y Dudu en un café", width: 1200, height: 1600 },
