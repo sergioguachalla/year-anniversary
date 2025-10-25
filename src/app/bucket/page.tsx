@@ -233,7 +233,7 @@ export default function Page() {
           {(onClose) => (
             <>
               <ModalHeader className="text-xl font-semibold">
-                Nuestro Bucket List 💘
+                UN AÑO SIIIIIIUUUU
               </ModalHeader>
               <ModalBody className="space-y-3">
                 <p>
@@ -247,8 +247,9 @@ export default function Page() {
                   <li>✨ <strong>Varios</strong>: cualquier idea linda o pendiente</li>
                 </ul>
                 <p>
-                  Agrega un plan con el campo de arriba, elige la categoría y marca como
-                  hecho cuando lo cumplamos. Todo queda guardado para seguir sumando.
+                  Agrega un plan, eliges la categoría y marca como
+                  hecho cuando lo cumplamos. Esta conectado a una BD asi que 
+                  se guarda y se puede ver en cualquier momento.
                 </p>
               </ModalBody>
               <ModalFooter className="gap-2">
@@ -256,7 +257,7 @@ export default function Page() {
                   Luego
                 </Button>
                 <Button className="bg-[var(--primary)] text-white" onPress={closeIntro} autoFocus>
-                  ¡Entendido!
+                  Ok, dudu me ama más
                 </Button>
               </ModalFooter>
             </>
