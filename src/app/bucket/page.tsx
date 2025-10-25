@@ -2,11 +2,24 @@
 "use client";
 
 import TabsSection, { TabItem } from "../components/TabsSection";
-import { Input, Button, Checkbox, Select, SelectItem, Chip } from "@heroui/react";
-import { useMemo, useState } from "react";
+import {
+  Input,
+  Button,
+  Checkbox,
+  Select,
+  SelectItem,
+  Chip,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from "@heroui/react";
+import { useEffect, useMemo, useState } from "react";
 import { useBucket, CATEGORIES, Category, Plan } from "./useBucket";
 
 const OWNER_CODE = "bubu-dudu-2025-pon-aqui-un-codigo-largo";
+const INTRO_SEEN_KEY = "bucket-intro-seen";
 
 function CategorySelect({
   value,
@@ -24,7 +37,7 @@ function CategorySelect({
       onSelectionChange={(k) => onChange(Array.from(k)[0] as Category)}
       className="min-w-[180px]"
     >
-      {CATEGORIES.map((c) => (      
+      {CATEGORIES.map((c) => (
         <SelectItem key={c}>
           {c === "lugares para comer" ? "lugares para comer" : c}
         </SelectItem>
@@ -34,7 +47,7 @@ function CategorySelect({
 }
 
 function ListView({ category }: { category: Category | "todas" }) {
-  const { items, loading, error, add, toggle, edit, remove } = useBucket(OWNER_CODE); 
+  const { items, loading, error, add, toggle, edit, remove } = useBucket(OWNER_CODE);
 
   const [text, setText] = useState("");
   const [cat, setCat] = useState<Category>(category === "todas" ? "varios" : category);
@@ -72,7 +85,7 @@ function ListView({ category }: { category: Category | "todas" }) {
 
   return (
     <div className="space-y-8">
-      {/* Form de alta (si estás en "todas", eliges categoría; si no, viene preseleccionada) */}
+      {/* Form de alta */}
       <div className="flex flex-col gap-2 sm:flex-row">
         <Input
           value={text}
@@ -81,11 +94,7 @@ function ListView({ category }: { category: Category | "todas" }) {
           onKeyDown={(e) => e.key === "Enter" && submit()}
           className="flex-1"
         />
-        <CategorySelect
-          value={cat}
-          onChange={setCat}
-          ariaLabel="Categoría del nuevo plan"
-        />
+        <CategorySelect value={cat} onChange={setCat} ariaLabel="Categoría del nuevo plan" />
         <Button className="bg-[var(--primary)] text-white" onPress={submit}>
           Agregar
         </Button>
@@ -104,10 +113,7 @@ function ListView({ category }: { category: Category | "todas" }) {
             {todo.map((p) => (
               <li key={p.id} className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
                 <div className="flex items-center gap-3 flex-1">
-                  <Checkbox
-                    isSelected={p.done}
-                    onChange={() => toggle(p.id, !p.done)}
-                  />
+                  <Checkbox isSelected={p.done} onChange={() => toggle(p.id, !p.done)} />
                   {editing === p.id ? (
                     <div className="flex flex-col sm:flex-row gap-2 flex-1">
                       <Input value={editText} onValueChange={setEditText} />
@@ -159,10 +165,7 @@ function ListView({ category }: { category: Category | "todas" }) {
           <ul className="space-y-2">
             {done.map((p) => (
               <li key={p.id} className="flex items-center gap-3">
-                <Checkbox
-                  isSelected={p.done}
-                  onChange={() => toggle(p.id, !p.done)}
-                />
+                <Checkbox isSelected={p.done} onChange={() => toggle(p.id, !p.done)} />
                 <span className="flex-1 line-through opacity-70">{p.text}</span>
                 <Chip radius="full" variant="flat">
                   {p.category}
@@ -188,10 +191,78 @@ const ITEMS: TabItem[] = CATEGORY_TABS.map((c) => ({
 }));
 
 export default function Page() {
+  // ===== MODAL DE INTRO =====
+  const [introOpen, setIntroOpen] = useState(false);
+
+  // Mostrar solo la primera vez (por navegador)
+  useEffect(() => {
+    try {
+      const seen = typeof window !== "undefined" && localStorage.getItem(INTRO_SEEN_KEY);
+      if (!seen) setIntroOpen(true);
+    } catch {
+      // si localStorage no está disponible, no hacemos nada
+    }
+  }, []);
+
+  const closeIntro = () => {
+    setIntroOpen(false);
+    try {
+      localStorage.setItem(INTRO_SEEN_KEY, "1");
+    } catch {}
+  };
+
   return (
     <main className="p-6 md:p-10">
-      <h1 className="text-3xl md:text-4xl font-bold mb-4">Nuestros planes</h1>
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <h1 className="text-3xl md:text-4xl font-bold">Nuestros planes</h1>
+        <Button
+          variant="flat"
+          onPress={() => setIntroOpen(true)}
+          aria-label="¿Qué es esto?"
+          className="shrink-0"
+        >
+          ¿Qué es esto?
+        </Button>
+      </div>
+
       <TabsSection ariaLabel="Secciones de Planes" items={ITEMS} fullWidth />
+
+      {/* MODAL INTRO */}
+      <Modal isOpen={introOpen} onOpenChange={setIntroOpen} size="lg" hideCloseButton>
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="text-xl font-semibold">
+                Nuestro Bucket List 💘
+              </ModalHeader>
+              <ModalBody className="space-y-3">
+                <p>
+                  La idea de esta sección es tener <strong>nuestro bucket list</strong>: un
+                  lugarcito para guardar cosas que queremos hacer juntos.
+                </p>
+                <ul className="list-disc pl-5 space-y-1">
+                  <li>🌍 <strong>Lugares</strong> a los que nos gustaría ir</li>
+                  <li>🍳 <strong>Comida</strong> que queremos cocinar</li>
+                  <li>🎬 <strong>Series o películas</strong> que queremos ver</li>
+                  <li>✨ <strong>Varios</strong>: cualquier idea linda o pendiente</li>
+                </ul>
+                <p>
+                  Agrega un plan con el campo de arriba, elige la categoría y marca como
+                  hecho cuando lo cumplamos. Todo queda guardado para seguir sumando.
+                </p>
+              </ModalBody>
+              <ModalFooter className="gap-2">
+                <Button variant="light" onPress={() => onClose()}>
+                  Luego
+                </Button>
+                <Button className="bg-[var(--primary)] text-white" onPress={closeIntro} autoFocus>
+                  ¡Entendido!
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </main>
   );
 }
