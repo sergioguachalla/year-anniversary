@@ -4,10 +4,12 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Modal, ModalContent } from "@heroui/react";
 
 export type Photo = {
-  src: string;       // /public/images/...
-  alt: string;       // texto accesible
-  width: number;     // píxeles reales aprox (ej: 1200)
-  height: number;    // píxeles reales aprox (ej: 1600)
+  src: string;        // /public/images/...
+  alt: string;        // texto accesible
+  width: number;      // píxeles reales aprox (ej: 1200)
+  height: number;     // píxeles reales aprox (ej: 1600)
+  caption?: string;   // ej: "Nuestra primera foto"
+  date?: string;      // ej: "12/08/2022" (opcional)
 };
 
 export type GalleryProps = {
@@ -27,8 +29,15 @@ export default function Gallery({ photos, emptyHint = "Aún no hay fotos. 💙" 
     setOpen(true);
   }, []);
 
-  const onPrev = useCallback(() => setIdx((i) => (i - 1 + photos.length) % photos.length), [photos.length]);
-  const onNext = useCallback(() => setIdx((i) => (i + 1) % photos.length), [photos.length]);
+  const onPrev = useCallback(
+    () => setIdx((i) => (i - 1 + photos.length) % photos.length),
+    [photos.length]
+  );
+
+  const onNext = useCallback(
+    () => setIdx((i) => (i + 1) % photos.length),
+    [photos.length]
+  );
 
   // Navegación con teclado en el lightbox
   useEffect(() => {
@@ -46,27 +55,64 @@ export default function Gallery({ photos, emptyHint = "Aún no hay fotos. 💙" 
 
   return (
     <>
-      {/* Masonry con CSS columns: simple y fluido */}
+      {/* Masonry con CSS columns */}
       <div className="columns-1 sm:columns-2 md:columns-3 gap-4">
-        {photos.map((p, i) => (
-          <button
-            key={p.src + i}
-            onClick={() => openAt(i)}
-            className="group mb-4 w-full break-inside-avoid focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] rounded-lg"
-            aria-label={`Abrir imagen: ${p.alt}`}
-          >
-            <div className="relative overflow-hidden rounded-lg ring-1 ring-black/5 transition group-hover:translate-y-[-1px] group-hover:shadow-md">
-              <Image
-                src={p.src}
-                alt={p.alt}
-                width={p.width}
-                height={p.height}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className="h-auto w-full object-cover"
-              />
-            </div>
-          </button>
-        ))}
+        {photos.map((p, i) => {
+          const captionId = `photo-caption-${i}`;
+          return (
+            <button
+              key={p.src + i}
+              onClick={() => openAt(i)}
+              className="group mb-4 w-full break-inside-avoid focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] rounded-lg"
+              aria-label={`Abrir imagen: ${p.alt}`}
+              aria-describedby={p.caption ? captionId : undefined}
+            >
+              {/* Polaroid */}
+              <div
+                className="
+                  relative w-full overflow-hidden rounded-sm
+                  bg-white shadow-[0_6px_18px_rgba(0,0,0,0.12)]
+                  ring-1 ring-black/5
+                  transition-transform
+                  group-hover:-translate-y-0.5 group-hover:shadow-[0_10px_24px_rgba(0,0,0,0.18)]
+                  group-hover:rotate-[0.8deg]
+                  dark:bg-neutral-50
+                "
+              >
+                {/* Marco superior/lateral: padding. Pie: padding extra abajo */}
+                <div className="p-2 pb-0">
+                  <Image
+                    src={p.src}
+                    alt={p.alt}
+                    width={p.width}
+                    height={p.height}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="h-auto w-full object-cover select-none"
+                    draggable={false}
+                  />
+                </div>
+
+                {/* Pie tipo polaroid */}
+                <div className="px-3 pt-2 pb-4 text-center">
+                  {(p.caption || p.date) && (
+                    <figcaption
+                      id={captionId}
+                      className="
+                        text-neutral-700 leading-tight
+                        [text-wrap:balance]
+                        font-hand text-base
+                      "
+                    >
+                      {p.caption ?? ""}
+                      {p.caption && p.date ? " · " : ""}
+                      <span className="opacity-70">{p.date}</span>
+                    </figcaption>
+                  )}
+                </div>
+              </div>
+            </button>
+          );
+        })}
       </div>
 
       {/* Lightbox */}
@@ -83,14 +129,33 @@ export default function Gallery({ photos, emptyHint = "Aún no hay fotos. 💙" 
               </button>
 
               {current && (
-                <Image
-                  src={current.src}
-                  alt={current.alt}
-                  width={current.width}
-                  height={current.height}
-                  className="max-h-[90dvh] w-auto h-auto rounded-lg shadow-2xl"
-                  priority
-                />
+                <>
+                  <Image
+                    src={current.src}
+                    alt={current.alt}
+                    width={current.width}
+                    height={current.height}
+                    className="max-h-[86dvh] w-auto h-auto rounded-lg shadow-2xl"
+                    priority
+                  />
+                  {/* Pie dentro del lightbox */}
+                  {(current.caption || current.date) && (
+                    <div
+                      className="
+                        absolute bottom-4 left-1/2 -translate-x-1/2
+                        max-w-[92vw] rounded-md
+                        bg-black/40 px-4 py-2 text-white
+                        backdrop-blur-sm
+                        text-center text-sm md:text-base
+                      "
+                      role="note"
+                    >
+                      {current.caption}
+                      {current.caption && current.date ? " · " : ""}
+                      <span className="opacity-75">{current.date}</span>
+                    </div>
+                  )}
+                </>
               )}
 
               <button

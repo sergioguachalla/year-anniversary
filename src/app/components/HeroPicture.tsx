@@ -7,7 +7,7 @@ type HeroPictureProps = {
   className?: string;
 };
 
-const prefix = process.env.NEXT_PUBLIC_BASE_PATH || "jhkdfsasfjkasl";
+const prefix = process.env.NEXT_PUBLIC_BASE_PATH || "public";
 
 export default function HeroPicture({ src, alt, className }: HeroPictureProps) {
   // normaliza y prefija
