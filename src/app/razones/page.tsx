@@ -24,6 +24,10 @@ const TODAS: string[] = [
   "Tus besotes",
   "Tu traserito :D",
   "La forma en la que me ves",
+  "Dormir contigo",
+  "Tu sonrisa",
+  "Tus manitos",
+  "Que me digas cosas bonitas",
   "ABSOLUTAMENTE TODO DE TI MI AMOR",
 ];
 
