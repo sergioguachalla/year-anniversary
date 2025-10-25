@@ -221,7 +221,7 @@ export default function Page() {
           aria-label="¿Qué es esto?"
           className="shrink-0"
         >
-          ¿Qué es esto?
+          QUE ES ESTOOOO
         </Button>
       </div>
 
@@ -241,10 +241,10 @@ export default function Page() {
                   lugarcito para guardar cosas que queremos hacer juntos.
                 </p>
                 <ul className="list-disc pl-5 space-y-1">
-                  <li>🌍 <strong>Lugares</strong> a los que nos gustaría ir</li>
-                  <li>🍳 <strong>Comida</strong> que queremos cocinar</li>
-                  <li>🎬 <strong>Series o películas</strong> que queremos ver</li>
-                  <li>✨ <strong>Varios</strong>: cualquier idea linda o pendiente</li>
+                  <li> <strong>Lugares a los que nos gustaría ir</strong></li>
+                  <li> <strong>Comida que queremos cocinar</strong></li>
+                  <li> <strong>Series o películas que queremos ver</strong></li>
+                  <li> <strong>Varios: cualquier idea linda o pendiente</strong></li>
                 </ul>
                 <p>
                   Agrega un plan, eliges la categoría y marca como
