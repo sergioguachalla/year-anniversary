@@ -13,7 +13,7 @@ import BackHomeFab from "./components/BackHomeFab";
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body className={`${plusJakarta.variable} body-font min-h-screen bg-[var(--bg)] text-[var(--fg)]`}>
+      <body className={`${plusJakarta.variable} body-font min-h-screen bg-[var(--bg)] text-[var(--fg)] min-h-svh antialiased`}>
         <HeroUIProvider>{children}</HeroUIProvider>
         <BackHomeFab />
       </body>

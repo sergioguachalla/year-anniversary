@@ -5,6 +5,36 @@
 @source '../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
 @custom-variant dark (&:is(.dark *));
 
+
+:root{
+  --step--1: clamp(0.85rem, 0.80rem + 0.2vw, 0.95rem);
+  --step-0:  clamp(1.00rem, 0.95rem + 0.4vw, 1.125rem);
+  --step-1:  clamp(1.15rem, 1.05rem + 0.6vw, 1.25rem);
+  --step-2:  clamp(1.35rem, 1.15rem + 1.0vw, 1.5rem);
+  --step-3:  clamp(1.6rem,  1.25rem + 1.6vw, 1.875rem);
+  --step-4:  clamp(2.0rem,  1.35rem + 2.6vw, 2.375rem);
+}
+.text-fluid-xs{ font-size: var(--step--1); }
+.text-fluid-sm{ font-size: var(--step-0); }
+.text-fluid-base{ font-size: var(--step-1); }
+.text-fluid-lg{ font-size: var(--step-2); }
+.text-fluid-xl{ font-size: var(--step-3); }
+.text-fluid-2xl{ font-size: var(--step-4); }
+
+
+/* 2) Contenedor centrado y respiración lateral */
+.container-px{
+  padding-left: clamp(1rem, 3vw, 2rem);
+  padding-right: clamp(1rem, 3vw, 2rem);
+}
+
+/* 3) Imágenes y videos siempre ajustados */
+img, video{ max-width: 100%; height: auto; }
+
+/* 4) Habilitar container queries (ver paso 4) */
+.cq{ container-type: inline-size; container-name: comp; }
+
+
 /* === Tema (Midnight Sky) === */
 :root {
   --bg: #F5F8FF;
